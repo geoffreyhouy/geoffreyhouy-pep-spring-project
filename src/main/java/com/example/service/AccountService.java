@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.entity.Account;
 import com.example.exception.AccountAlreadyExistsException;
-import com.example.exception.AuthenticationException;
+import com.example.exception.AccountAuthenticationException;
 import com.example.repository.AccountRepository;
 
 @Service
@@ -35,6 +35,6 @@ public class AccountService {
 
     public Account login(Account account) {
         return accountRepository.findByUsernameAndPassword(account.getUsername(), account.getPassword())
-                                .orElseThrow(() -> new AuthenticationException("Invalid login credentials"));
+                                .orElseThrow(() -> new AccountAuthenticationException("Invalid login credentials"));
     }
 }
